@@ -20,12 +20,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	for _, link := range collection.links {
+	for i, link := range collection.links {
 		err = link.FetchStatus()
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
+
+		collection.links[i] = link
 
 		if link.StatusSuccess() {
 			continue
